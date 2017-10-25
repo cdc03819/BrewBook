@@ -19,6 +19,6 @@
         android:layout_weight="0.69"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="By Chris Cooper & Kara Bricker"
+        android:text="By Chris Cooper and Kara Bricker"
         android:textAppearance="@style/TextAppearance.AppCompat" />
 </LinearLayout>
