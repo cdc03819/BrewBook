@@ -1,4 +1,4 @@
-# BeerRate
+# BrewBook
 app files
 BrewBook is an app that we are looking to bring to the marketplace
 that will be used by beer enthusiasts to socialise with other beer enthusiasts. 
