@@ -92,7 +92,7 @@
         android:layout_height="match_parent">
 
         <ImageButton
-            android:id="@+id/imageButton5"
+            android:id="@+id/imageBtmSettings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -107,7 +107,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="43dp"
-            android:layout_toEndOf="@+id/imageButton5"
+            android:layout_toEndOf="@+id/imageBtmSettings"
             android:background="@android:color/transparent"
             android:tint="@android:color/holo_red_light"
             app:srcCompat="@drawable/ic_trending_up_black_24dp" />
@@ -118,13 +118,13 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginEnd="52dp"
-            android:layout_toStartOf="@+id/imageButton10"
+            android:layout_toStartOf="@+id/imageBtmuser"
             android:background="@android:color/transparent"
             android:tint="@color/colorAccent"
             app:srcCompat="@drawable/ic_add_location_black_24dp" />
 
         <ImageButton
-            android:id="@+id/imageButton10"
+            android:id="@+id/imageBtmuser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
