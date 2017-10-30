@@ -12,13 +12,4 @@
         app:srcCompat="@drawable/logo"
         android:layout_weight="0.69" />
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.69"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="By Chris Cooper and Kara Bricker"
-        android:textAppearance="@style/TextAppearance.AppCompat" />
 </LinearLayout>
