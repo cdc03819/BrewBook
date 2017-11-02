@@ -6,9 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
 
-/**
- * Created by GreenBeast on 10/29/2017.
- */
 
 
 public class settings extends AppCompatActivity {

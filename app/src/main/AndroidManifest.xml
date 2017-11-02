@@ -27,19 +27,19 @@
     </activity>
         <activity
             android:name=".settings"
-            android:label="Settings" >
+           >
         </activity>
         <activity
             android:name=".trending"
-            android:label="Trending Page" >
+             >
         </activity>
         <activity
             android:name=".user"
-            android:label="User Profile" >
+           >
         </activity>
         <activity
             android:name=".location"
-            android:label="Location" >
+           >
         </activity>
     </application>
 </manifest>

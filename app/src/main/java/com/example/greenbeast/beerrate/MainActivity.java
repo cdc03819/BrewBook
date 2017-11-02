@@ -1,15 +1,12 @@
 package com.example.greenbeast.beerrate;
 
 import android.content.Intent;
-import android.media.Image;
+
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
 
-/**
- * Created by GreenBeast on 10/26/2017.
- */
 
 public class MainActivity extends AppCompatActivity {
    ImageButton trendingBtm,userBtm,locationBtm,settingsBtm;
@@ -18,44 +15,48 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        trendingBtm = (ImageButton) findViewById(R.id.imageBtmtrending);
-        userBtm = (ImageButton) findViewById(R.id.imageBtmuser);
-        locationBtm = (ImageButton) findViewById(R.id.imageBtmlocation);
-        settingsBtm = (ImageButton) findViewById(R.id.imageBtmSettings);
+        ImageButton trendingBtm = (ImageButton) findViewById(R.id.imageBtmtrending);
+        ImageButton userBtm = (ImageButton) findViewById(R.id.imageBtmuser);
+        ImageButton locationBtm = (ImageButton) findViewById(R.id.imageBtmlocation);
+        ImageButton settingsBtm = (ImageButton) findViewById(R.id.imageBtmSettings);
 
-        trendingBtm.setOnClickListener(btTrending);
-        userBtm.setOnClickListener(btUser);
-        locationBtm.setOnClickListener(btlocation);
-        settingsBtm.setOnClickListener(btSettings);
-    }
-        ImageButton.OnClickListener btTrending= new ImageButton.OnClickListener(){
+        trendingBtm.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View v){
-                startActivity(new Intent(MainActivity.this, trending.class));
+            public void onClick(View v) {
+                Intent trending = new Intent(MainActivity.this, com.example.greenbeast.beerrate.trending.class);
+                startActivity(trending);
             }
 
-        };
-    ImageButton.OnClickListener btUser= new ImageButton.OnClickListener(){
-        @Override
-        public void onClick(View v){
-            startActivity(new Intent(MainActivity.this, user.class));
-        }
+        });
+        userBtm.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent user = new Intent(MainActivity.this, com.example.greenbeast.beerrate.user.class);
+                startActivity(user);
+            }
 
-    };
-    ImageButton.OnClickListener btlocation= new ImageButton.OnClickListener(){
-        @Override
-        public void onClick(View v){
-            startActivity(new Intent(MainActivity.this, location.class));
-        }
+        });
+        locationBtm.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent location = new Intent(MainActivity.this, com.example.greenbeast.beerrate.location.class);
+                startActivity(location);
+            }
+        });
+        settingsBtm.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View V){
+                Intent setting = new Intent(MainActivity.this, settings.class);
+                startActivity(setting);
+            }
+        });
 
-    };
-    ImageButton.OnClickListener btSettings= new ImageButton.OnClickListener(){
-        @Override
-        public void onClick(View v){
-            startActivity(new Intent(MainActivity.this, settings.class));
-        }
+    }
 
-    };
+
+
+
+
 
 
 }
