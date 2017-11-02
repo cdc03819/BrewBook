@@ -102,7 +102,7 @@
             app:srcCompat="@drawable/ic_settings_black_24dp" />
 
         <ImageButton
-            android:id="@+id/imageButton6"
+            android:id="@+id/imageBtmtrending"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -113,7 +113,7 @@
             app:srcCompat="@drawable/ic_trending_up_black_24dp" />
 
         <ImageButton
-            android:id="@+id/imageButton9"
+            android:id="@+id/imageBtmlocation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
