@@ -37,11 +37,6 @@
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:layout_scrollFlags="scroll|enterAlways" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatingActionButton2"
@@ -80,7 +75,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="43dp"
             android:layout_toEndOf="@+id/imageBtmSettings"
-            android:background="@android:color/transparent"
+            android:background="@android:color/background_dark"
             android:tint="@android:color/holo_red_light"
             app:srcCompat="@drawable/ic_trending_up_black_24dp" />
 
