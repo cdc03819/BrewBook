@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/BeerRate.iml" filepath="$PROJECT_DIR$/BeerRate.iml" />
-      <module fileurl="file://$PROJECT_DIR$/BrewBook.iml" filepath="$PROJECT_DIR$/BrewBook.iml" />
+      <module fileurl="file://C:\Users\GreenBeast\Documents\Sjfc\BeerRate\BrewBook.iml" filepath="C:\Users\GreenBeast\Documents\Sjfc\BeerRate\BrewBook.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
