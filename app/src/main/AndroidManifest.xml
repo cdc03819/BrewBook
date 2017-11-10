@@ -33,6 +33,7 @@
         <activity android:name=".trending" />
         <activity android:name=".user" />
         <activity android:name=".location" />
+        <activity android:name="newsfeed.MainActivity" />
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" />

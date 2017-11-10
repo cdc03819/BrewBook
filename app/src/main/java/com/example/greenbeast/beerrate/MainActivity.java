@@ -26,7 +26,8 @@ public class MainActivity extends AppCompatActivity {
         trendingBtm.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent trending = new Intent(MainActivity.this, com.example.greenbeast.beerrate.trending.class);
+                Intent trending;
+                trending = new Intent(MainActivity.this, newsfeed.MainActivity.class);
                 startActivity(trending);
             }
 
