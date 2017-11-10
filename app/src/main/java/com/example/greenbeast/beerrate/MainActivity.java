@@ -3,6 +3,7 @@ package com.example.greenbeast.beerrate;
 import android.content.Intent;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
@@ -10,6 +11,7 @@ import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity {
    ImageButton trendingBtm,userBtm,locationBtm,settingsBtm;
+   FloatingActionButton addReviewBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
         ImageButton userBtm = (ImageButton) findViewById(R.id.imageBtmuser);
         ImageButton locationBtm = (ImageButton) findViewById(R.id.imageBtmlocation);
         ImageButton settingsBtm = (ImageButton) findViewById(R.id.imageBtmSettings);
+        FloatingActionButton addReviewBtn = (FloatingActionButton) findViewById(R.id.addReview);
 
         trendingBtm.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -46,10 +49,19 @@ public class MainActivity extends AppCompatActivity {
         settingsBtm.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View V){
-                Intent setting = new Intent(MainActivity.this, settings.class);
+                Intent setting = new Intent(MainActivity.this, SettingsActivity.class);
                 startActivity(setting);
             }
         });
+
+        FloatingActionButton.OnClickListener btAdd = new ImageButton.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                startActivity(new Intent(MainActivity.this, add.class));
+            }
+
+        };
+
 
     }
 

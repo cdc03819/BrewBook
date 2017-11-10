@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
@@ -32,6 +33,7 @@ import java.util.List;
 
 public class trending extends AppCompatActivity {
         ImageButton trendingBtm,userBtm,locationBtm,settingsBtm;
+        FloatingActionButton addReviewBtm;
     private static final String TAG = MainActivity.class.getSimpleName();
     private FeedListAdapter listAdapter;
     private List<FeedItem> feedItems;
@@ -47,10 +49,13 @@ public class trending extends AppCompatActivity {
             userBtm = (ImageButton) findViewById(R.id.imageBtmuser);
             locationBtm = (ImageButton) findViewById(R.id.imageBtmlocation);
             settingsBtm = (ImageButton) findViewById(R.id.imageBtmSettings);
+            addReviewBtm = (FloatingActionButton) findViewById(R.id.addReview);
             trendingBtm.setOnClickListener(btTrending);
             userBtm.setOnClickListener(btUser);
             locationBtm.setOnClickListener(btlocation);
             settingsBtm.setOnClickListener(btSettings);
+            addReviewBtm.setOnClickListener(btAdd);
+
         ListView listView;
         listView = (ListView) findViewById(R.id.list);
 
@@ -166,10 +171,17 @@ public class trending extends AppCompatActivity {
     ImageButton.OnClickListener btSettings= new ImageButton.OnClickListener(){
         @Override
         public void onClick(View v){
-            startActivity(new Intent(trending.this, settings.class));
+            startActivity(new Intent(trending.this, SettingsActivity.class));
+        }
+
+    };
+    FloatingActionButton.OnClickListener btAdd= new ImageButton.OnClickListener(){
+        @Override
+        public void onClick(View v){
+            startActivity(new Intent(trending.this, add.class));
         }
 
     };
 
-        }
+}
 

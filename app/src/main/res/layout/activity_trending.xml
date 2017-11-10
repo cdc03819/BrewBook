@@ -50,7 +50,7 @@
 
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButton2"
+        android:id="@+id/addReview"
         android:layout_width="wrap_content"
         android:layout_height="476dp"
         android:layout_above="@+id/imageButton4"
