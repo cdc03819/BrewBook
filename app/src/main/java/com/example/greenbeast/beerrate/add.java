@@ -1,13 +1,16 @@
 package com.example.greenbeast.beerrate;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageButton;
 
 public class add extends AppCompatActivity {
+    ImageButton trendingBtm,userBtm,locationBtm,settingsBtm;
 Toolbar toolbar;
 FloatingActionButton fab;
     @Override
@@ -25,5 +28,44 @@ FloatingActionButton fab;
                         .setAction("Action", null).show();
             }
         });
+
+        trendingBtm = (ImageButton) findViewById(R.id.imageBtmtrending);
+        userBtm = (ImageButton) findViewById(R.id.imageBtmuser);
+        locationBtm = (ImageButton) findViewById(R.id.imageBtmlocation);
+        settingsBtm = (ImageButton) findViewById(R.id.imageBtmSettings);
+        trendingBtm.setOnClickListener(btTrending);
+        userBtm.setOnClickListener(btUser);
+        locationBtm.setOnClickListener(btlocation);
+        settingsBtm.setOnClickListener(btSettings);
     }
+    ImageButton.OnClickListener btTrending= new ImageButton.OnClickListener(){
+        @Override
+        public void onClick(View v){
+            startActivity(new Intent(add.this, newsfeed.MainActivity.class));
+        }
+
+    };
+    ImageButton.OnClickListener btUser= new ImageButton.OnClickListener(){
+        @Override
+        public void onClick(View v){
+            startActivity(new Intent(add.this, user.class));
+        }
+
+    };
+    ImageButton.OnClickListener btlocation= new ImageButton.OnClickListener(){
+        @Override
+        public void onClick(View v){
+            startActivity(new Intent(add.this, MapsActivity.class));
+        }
+
+    };
+    ImageButton.OnClickListener btSettings= new ImageButton.OnClickListener(){
+        @Override
+        public void onClick(View v){
+            startActivity(new Intent(add.this, SettingsActivity.class));
+        }
+
+    };
+
+
 }

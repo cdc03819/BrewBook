@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         locationBtm.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent location = new Intent(MainActivity.this, com.example.greenbeast.beerrate.location.class);
+                Intent location = new Intent(MainActivity.this, com.example.greenbeast.beerrate.MapsActivity.class);
                 startActivity(location);
             }
         });

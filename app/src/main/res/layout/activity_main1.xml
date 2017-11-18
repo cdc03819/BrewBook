@@ -3,13 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="eu.laramartin.newsfeed.MainActivity">
 
     <android.support.v4.widget.SwipeRefreshLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/swiperefresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_above="@+id/imageBtmSettings"
+        android:layout_alignParentStart="true">
 
         <ListView
             android:id="@+id/list_view"
@@ -18,5 +20,65 @@
             android:scrollbars="none">
 
         </ListView>
+
+
     </android.support.v4.widget.SwipeRefreshLayout>
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/addReview"
+        android:layout_width="wrap_content"
+        android:layout_height="476dp"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="center_vertical|left"
+        android:layout_marginBottom="19dp"
+        android:layout_weight="1"
+        android:clickable="true"
+        app:fabSize="mini"
+        app:layout_anchor="@+id/relativeLayout"
+        app:layout_anchorGravity="top|right"
+        app:srcCompat="?android:attr/listChoiceIndicatorMultiple" />
+
+    <ImageButton
+        android:id="@+id/imageBtmuser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:background="@android:color/transparent"
+        android:tint="@color/colorPrimary"
+        app:srcCompat="@drawable/ic_face_black_24dp" />
+
+    <ImageButton
+        android:id="@+id/imageBtmlocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/imageBtmtrending"
+        android:layout_marginEnd="52dp"
+        android:layout_toStartOf="@+id/imageBtmuser"
+        android:background="@android:color/transparent"
+        android:tint="@color/colorAccent"
+        app:srcCompat="@drawable/ic_add_location_black_24dp" />
+
+    <ImageButton
+        android:id="@+id/imageBtmtrending"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="45dp"
+        android:layout_toEndOf="@+id/imageBtmSettings"
+        android:background="@android:color/black"
+        android:tint="@android:color/holo_red_light"
+        app:srcCompat="@drawable/ic_trending_up_black_24dp" />
+
+    <ImageButton
+        android:id="@+id/imageBtmSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:background="@android:color/transparent"
+        android:tint="@color/colorPrimaryDark"
+        app:srcCompat="@drawable/ic_settings_black_24dp" />
 </RelativeLayout>
+

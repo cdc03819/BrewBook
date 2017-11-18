@@ -32,4 +32,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     implementation files('libs/volley.jar')
 
+    implementation 'com.google.android.gms:play-services-maps:11.6.0'
 }

@@ -31,7 +31,7 @@ public class user extends AppCompatActivity {
     ImageButton.OnClickListener btTrending= new ImageButton.OnClickListener(){
         @Override
         public void onClick(View v){
-            startActivity(new Intent(user.this, trending.class));
+            startActivity(new Intent(user.this, newsfeed.MainActivity.class));
         }
 
     };
@@ -45,7 +45,7 @@ public class user extends AppCompatActivity {
     ImageButton.OnClickListener btlocation= new ImageButton.OnClickListener(){
         @Override
         public void onClick(View v){
-            startActivity(new Intent(user.this, location.class));
+            startActivity(new Intent(user.this, MapsActivity.class));
         }
 
     };

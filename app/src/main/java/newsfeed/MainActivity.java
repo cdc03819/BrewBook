@@ -3,21 +3,29 @@ package newsfeed;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
+import com.example.greenbeast.beerrate.MapsActivity;
 import com.example.greenbeast.beerrate.R;
+import com.example.greenbeast.beerrate.SettingsActivity;
+import com.example.greenbeast.beerrate.add;
+import com.example.greenbeast.beerrate.user;
 
 import java.util.List;
 
 public class MainActivity
         extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<List<News>>, SwipeRefreshLayout.OnRefreshListener {
+    ImageButton trendingBtm,userBtm,locationBtm,settingsBtm;
+    FloatingActionButton addReviewBtm;
     private NewsAdapter adapter;
     private static int LOADER_ID = 0;
     SwipeRefreshLayout swipe;
@@ -43,7 +51,54 @@ public class MainActivity
             }
         });
         getSupportLoaderManager().initLoader(LOADER_ID, null, this);
+
+        trendingBtm = (ImageButton) findViewById(R.id.imageBtmtrending);
+        userBtm = (ImageButton) findViewById(R.id.imageBtmuser);
+        locationBtm = (ImageButton) findViewById(R.id.imageBtmlocation);
+        settingsBtm = (ImageButton) findViewById(R.id.imageBtmSettings);
+        addReviewBtm = (FloatingActionButton) findViewById(R.id.addReview);
+        trendingBtm.setOnClickListener(btTrending);
+        userBtm.setOnClickListener(btUser);
+        locationBtm.setOnClickListener(btlocation);
+        settingsBtm.setOnClickListener(btSettings);
+        addReviewBtm.setOnClickListener(btAdd);
     }
+    ImageButton.OnClickListener btTrending= new ImageButton.OnClickListener(){
+        @Override
+        public void onClick(View v){
+            startActivity(new Intent(newsfeed.MainActivity.this, newsfeed.MainActivity.class));
+        }
+
+    };
+    ImageButton.OnClickListener btUser= new ImageButton.OnClickListener(){
+        @Override
+        public void onClick(View v){
+            startActivity(new Intent(newsfeed.MainActivity.this, user.class));
+        }
+
+    };
+    ImageButton.OnClickListener btlocation= new ImageButton.OnClickListener(){
+        @Override
+        public void onClick(View v){
+            startActivity(new Intent(newsfeed.MainActivity.this, MapsActivity.class));
+        }
+
+    };
+    ImageButton.OnClickListener btSettings= new ImageButton.OnClickListener(){
+        @Override
+        public void onClick(View v){
+            startActivity(new Intent(newsfeed.MainActivity.this, SettingsActivity.class));
+        }
+
+    };
+    FloatingActionButton.OnClickListener btAdd= new ImageButton.OnClickListener(){
+        @Override
+        public void onClick(View v){
+            startActivity(new Intent(newsfeed.MainActivity.this, add.class));
+        }
+
+    };
+
 
     @Override
     public Loader<List<News>> onCreateLoader(int id, Bundle args) {
