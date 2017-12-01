@@ -104,7 +104,7 @@ public class MainActivity
 
                                 jsonObject = jsonArray.getJSONObject(i);
 
-                                Users.userName = jsonObject.getString("userName");
+                                Users.userName = jsonObject.getString("postInfo");
 
                                 subjectsList.add(Users);
                             }

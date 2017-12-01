@@ -49,6 +49,20 @@
         android:layout_height="wrap_content"
         tools:layout_editor_absoluteY="325dp">
 
+        <EditText
+            android:id="@+id/reviewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="207dp"
+            android:ems="10"
+            android:fontFamily="sans-serif"
+            android:hint="Beer Name"
+            android:inputType="textPersonName"
+            android:textSize="18sp"
+            android:typeface="serif" />
+
         <ImageButton
             android:id="@+id/imageBtmSettings"
             android:layout_width="wrap_content"
@@ -91,6 +105,27 @@
             android:background="@android:color/transparent"
             android:tint="@color/colorPrimary"
             app:srcCompat="@drawable/ic_face_black_24dp" />
+
+        <EditText
+            android:id="@+id/reviewContents"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/reviewTitle"
+            android:layout_marginTop="21dp"
+            android:maxLength="128"
+            android:ems="10"
+            android:fontFamily="sans-serif"
+            android:hint="What did you think?"
+            android:inputType="textMultiLine" />
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/reviewContents"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="35dp" />
 
     </RelativeLayout>
 
