@@ -89,8 +89,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             @Override
             public void onClick(View view) {
                 attemptLogin();
-                Intent login = new Intent(LoginActivity.this, newsfeed.MainActivity.class);
-                startActivity(login);
+
             }
         });
 
@@ -150,6 +149,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private void attemptLogin() {
         if (mAuthTask != null) {
             return;
+
         }
 
         // Reset errors.
@@ -191,6 +191,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(true);
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
+            Intent login = new Intent(LoginActivity.this, newsfeed.MainActivity.class);
+            startActivity(login);
         }
     }
 

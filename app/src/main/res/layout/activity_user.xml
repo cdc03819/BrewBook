@@ -66,6 +66,7 @@
             style="@style/Widget.AppCompat.ListView"
             android:layout_width="match_parent"
             android:layout_height="300dp"
+            android:layout_above="@+id/imageBtmSettings"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/imageView2"
             android:layout_marginTop="24dp"
@@ -79,7 +80,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
             android:background="@android:color/transparent"
-            android:tint="@color/colorPrimaryDark"
+            android:tint="@android:color/darker_gray"
             app:srcCompat="@drawable/ic_settings_black_24dp" />
 
         <ImageButton
@@ -90,7 +91,7 @@
             android:layout_marginStart="43dp"
             android:layout_toEndOf="@+id/imageBtmSettings"
             android:background="@android:color/transparent"
-            android:tint="@android:color/holo_red_light"
+            android:tint="@android:color/darker_gray"
             app:srcCompat="@drawable/ic_trending_up_black_24dp" />
 
         <ImageButton
@@ -101,7 +102,7 @@
             android:layout_marginEnd="52dp"
             android:layout_toStartOf="@+id/imageBtmuser"
             android:background="@android:color/transparent"
-            android:tint="@color/colorAccent"
+            android:tint="@android:color/darker_gray"
             app:srcCompat="@drawable/ic_add_location_black_24dp" />
 
         <ImageButton
@@ -110,8 +111,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
-            android:background="@android:color/black"
-            android:tint="@color/colorPrimary"
+            android:background="@android:color/transparent"
+            android:tint="@color/colorAccent"
             app:srcCompat="@drawable/ic_face_black_24dp" />
 
         <ImageView

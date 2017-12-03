@@ -1,8 +1,89 @@
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:map="http://schemas.android.com/apk/res-auto"
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/map"
-    android:name="com.google.android.gms.maps.SupportMapFragment"
+    android:id="@+id/activity_maps"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.greenbeast.beerrate.MapsActivity" />
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.greenbeast.beerrate.MainActivity">
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/addReview"
+        android:layout_width="wrap_content"
+        android:layout_height="476dp"
+        android:layout_above="@+id/imageButton4"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="center_vertical|left"
+        android:layout_marginBottom="19dp"
+        android:layout_weight="1"
+        android:clickable="true"
+        app:fabSize="mini"
+        app:layout_anchor="@+id/relativeLayout"
+        app:layout_anchorGravity="top|right"
+        app:srcCompat="?android:attr/listChoiceIndicatorMultiple" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="visible"
+        />
+
+    <ListView
+        android:id="@+id/listview1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/imageBtmuser"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true" />
+
+    <ImageButton
+        android:id="@+id/imageBtmuser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:background="@android:color/transparent"
+        android:tint="@android:color/darker_gray"
+        app:srcCompat="@drawable/ic_face_black_24dp" />
+
+    <ImageButton
+        android:id="@+id/imageBtmlocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/imageBtmtrending"
+        android:layout_marginEnd="52dp"
+        android:layout_toStartOf="@+id/imageBtmuser"
+        android:background="@android:color/transparent"
+        android:tint="@color/colorAccent"
+        app:srcCompat="@drawable/ic_add_location_black_24dp" />
+
+    <ImageButton
+        android:id="@+id/imageBtmtrending"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="45dp"
+        android:layout_toEndOf="@+id/imageBtmSettings"
+        android:background="@android:color/transparent"
+        android:tint="@android:color/darker_gray"
+        app:srcCompat="@drawable/ic_trending_up_black_24dp" />
+
+    <ImageButton
+        android:id="@+id/imageBtmSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:background="@android:color/transparent"
+        android:tint="@android:color/darker_gray"
+        app:srcCompat="@drawable/ic_settings_black_24dp" />
+</RelativeLayout>
+

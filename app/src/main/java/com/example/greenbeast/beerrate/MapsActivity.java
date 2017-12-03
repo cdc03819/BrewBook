@@ -1,46 +1,68 @@
 package com.example.greenbeast.beerrate;
 
-import android.support.v4.app.FragmentActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.ImageButton;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    private GoogleMap mMap;
-
+public class MapsActivity extends AppCompatActivity {
+    ImageButton trendingBtm,userBtm,locationBtm,settingsBtm;
+    FloatingActionButton addReviewBtm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+
+        trendingBtm = (ImageButton) findViewById(R.id.imageBtmtrending);
+        userBtm = (ImageButton) findViewById(R.id.imageBtmuser);
+        locationBtm = (ImageButton) findViewById(R.id.imageBtmlocation);
+        settingsBtm = (ImageButton) findViewById(R.id.imageBtmSettings);
+        addReviewBtm = (FloatingActionButton) findViewById(R.id.addReview);
+        trendingBtm.setOnClickListener(btTrending);
+        userBtm.setOnClickListener(btUser);
+        locationBtm.setOnClickListener(btlocation);
+        settingsBtm.setOnClickListener(btSettings);
+        addReviewBtm.setOnClickListener(btAdd);
     }
+    ImageButton.OnClickListener btTrending= new ImageButton.OnClickListener(){
+        @Override
+        public void onClick(View v){
+            startActivity(new Intent(MapsActivity.this, newsfeed.MainActivity.class));
+        }
+
+    };
+    ImageButton.OnClickListener btUser= new ImageButton.OnClickListener(){
+        @Override
+        public void onClick(View v){
+            startActivity(new Intent(MapsActivity.this, user.class));
+        }
+
+    };
+    ImageButton.OnClickListener btlocation= new ImageButton.OnClickListener(){
+        @Override
+        public void onClick(View v){
+            startActivity(new Intent(MapsActivity.this, MapsActivity.class));
+        }
+
+    };
+    ImageButton.OnClickListener btSettings= new ImageButton.OnClickListener(){
+        @Override
+        public void onClick(View v){
+            startActivity(new Intent(MapsActivity.this, SettingsActivity.class));
+        }
+
+    };
+    FloatingActionButton.OnClickListener btAdd= new ImageButton.OnClickListener(){
+        @Override
+        public void onClick(View v){
+            startActivity(new Intent(MapsActivity.this, add.class));
+        }
+
+    };
 
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
-
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-    }
 }
