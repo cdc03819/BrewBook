@@ -61,8 +61,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="visible"
+            />
+
         <ListView
-            android:id="@+id/userActivityList"
+            android:id="@+id/listview1"
             style="@style/Widget.AppCompat.ListView"
             android:layout_width="match_parent"
             android:layout_height="300dp"
@@ -133,7 +141,6 @@
             android:layout_alignStart="@+id/imageBtmtrending"
             android:layout_alignTop="@+id/imageView2"
             android:layout_marginStart="17dp"
-            android:text="@username"
             android:textColor="@color/colorAccent"
             android:textSize="24sp" />
 

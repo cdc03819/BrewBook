@@ -11,74 +11,63 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 
-public class LoginActivity extends AppCompatActivity {
-    Button signIn, register;
+public class register extends AppCompatActivity {
+    Button register;
     EditText email, password;
-    String userName, userPassword;
+    String userName;
+    EditText username;
+    String userPassword, userLocation;
+    EditText location;
     String add_user_url, login_url, newurl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_register);
 
 
 
-        signIn = (Button) findViewById(R.id.email_sign_in_button);
-        register = (Button) findViewById(R.id.email_register_button3);
-        signIn.setOnClickListener(btSignIn);
+        register = (Button) findViewById(R.id.registerbtn);
         register.setOnClickListener(btRegister);
-        email = (EditText)findViewById(R.id.email);
-        password = (EditText) findViewById(R.id.password);
+        username = (EditText)findViewById(R.id.regUser);
+        location = (EditText)findViewById(R.id.regLoc);
+        password = (EditText) findViewById(R.id.regPass);
 
     }
 
-    ImageButton.OnClickListener btSignIn = new ImageButton.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            saveinfo(v);
-
-
-
-        }
-
-    };
     ImageButton.OnClickListener btRegister = new ImageButton.OnClickListener() {
         @Override
         public void onClick(View v) {
-            startActivity(new Intent(LoginActivity.this, register.class));
+            saveinfo(v);
+            startActivity(new Intent(register.this, newsfeed.MainActivity.class));
         }
 
     };
 
     public void saveinfo(View view) {
-        userName = email.getText().toString();
+        userName = username.getText().toString();
         userPassword = password.getText().toString();
+        userLocation = location.getText().toString();
         BackgroundTask backgroundTask = new BackgroundTask();
-        backgroundTask.execute(userName, userPassword);
+        backgroundTask.execute(userName, userPassword, userLocation);
     }
 
     class BackgroundTask extends AsyncTask<String, Void, String> {
 
-        String add_info_url;
+        String add_user_url;
 
         @Override
         protected void onPreExecute() {
-            login_url = "http://lincoln.sjfc.edu/~cdc03819/CSCI375/login.php";
+            add_user_url = "http://lincoln.sjfc.edu/~cdc03819/CSCI375/adduser.php";
+
         }
 
         @Override
@@ -99,37 +88,14 @@ public class LoginActivity extends AppCompatActivity {
             userPassword = arg[1];
             try {
                 String data_String = URLEncoder.encode("userName", "UTF-8") + "=" + URLEncoder.encode(userName, "UTF-8") + "&" +
-                        URLEncoder.encode("userPassword", "UTF-8") + "=" + URLEncoder.encode(userPassword, "UTF-8");
-                newurl = login_url +"?" + data_String;
+                        URLEncoder.encode("userPassword", "UTF-8") + "=" + URLEncoder.encode(userPassword, "UTF-8")+ "&" +
+                        URLEncoder.encode("userLocation", "UTF-8") + "=" + URLEncoder.encode(userLocation, "UTF-8");
+                newurl = add_user_url +"?" + data_String;
                 URL url = new URL(newurl);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setDoOutput(true);
                 OutputStream outputStream = httpURLConnection.getOutputStream();
-                String response = "";
-                //for (login_url) {
-                    DefaultHttpClient client = new DefaultHttpClient();
-                    HttpGet httpGet = new HttpGet(newurl);
-                    try {
-                        HttpResponse execute = client.execute(httpGet);
-                        InputStream content = execute.getEntity().getContent();
-
-                        BufferedReader buffer = new BufferedReader(
-                                new InputStreamReader(content));
-                        String s = "";
-                        while ((s = buffer.readLine()) != null) {
-                            response += s;
-                        }
-                        if (response.endsWith("]")) {
-                            Intent signin = new Intent(LoginActivity.this, newsfeed.MainActivity.class);
-                            startActivity(signin);
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                //}
-
-
 
                 outputStream.close();
                 InputStream inputStream = httpURLConnection.getInputStream();
@@ -138,9 +104,9 @@ public class LoginActivity extends AppCompatActivity {
 
                 Log.d("userName = ", userName);
                 Log.d("userPassword = ", userPassword);
+                Log.d("userLocation = ", userLocation);
                 Log.d("url = ", newurl);
-                Log.d("valid = ", response);
-               return "Login Successful!";
+                return "User Registered!";
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -149,7 +115,6 @@ public class LoginActivity extends AppCompatActivity {
             return null;
         }
     }
-
 }
 
 

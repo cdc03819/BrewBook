@@ -67,6 +67,9 @@
         <activity
             android:name=".MapsActivity"
             android:label="BrewBook"></activity>
+        <activity
+            android:name=".register"
+            android:label="BrewBook"></activity>
     </application>
 
 </manifest>
