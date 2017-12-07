@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         userBtm.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent user = new Intent(MainActivity.this, com.example.greenbeast.beerrate.user.class);
+                Intent user = new Intent(MainActivity.this, newsfeed.user.class);
                 startActivity(user);
             }
 

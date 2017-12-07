@@ -71,7 +71,7 @@ public class add extends AppCompatActivity {
     ImageButton.OnClickListener btUser = new ImageButton.OnClickListener() {
         @Override
         public void onClick(View v) {
-            startActivity(new Intent(add.this, user.class));
+            startActivity(new Intent(add.this, newsfeed.user.class));
         }
 
     };

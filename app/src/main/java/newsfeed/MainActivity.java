@@ -11,13 +11,11 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.example.greenbeast.beerrate.MapsActivity;
 import com.example.greenbeast.beerrate.R;
 import com.example.greenbeast.beerrate.SettingsActivity;
 import com.example.greenbeast.beerrate.add;
-import com.example.greenbeast.beerrate.user;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -114,7 +112,7 @@ public class MainActivity
                         }
                     }
                 } else {
-                    Toast.makeText(context, httpServiceObject.getErrorMessage(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(context, httpServiceObject.getErrorMessage(), Toast.LENGTH_SHORT).show();
                 }
             } catch (Exception e) {
                 // TODO Auto-generated catch block
@@ -150,7 +148,7 @@ public class MainActivity
     ImageButton.OnClickListener btUser = new ImageButton.OnClickListener() {
         @Override
         public void onClick(View v) {
-            startActivity(new Intent(newsfeed.MainActivity.this, user.class));
+            startActivity(new Intent(newsfeed.MainActivity.this, newsfeed.user.class));
         }
 
     };

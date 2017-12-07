@@ -1,17 +1,21 @@
-package com.example.greenbeast.beerrate;
+package newsfeed;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.greenbeast.beerrate.MapsActivity;
+import com.example.greenbeast.beerrate.R;
+import com.example.greenbeast.beerrate.SettingsActivity;
+import com.example.greenbeast.beerrate.add;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,22 +24,29 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import newsfeed.HttpServicesClass;
-import newsfeed.ListAdapterClass;
-import newsfeed.Users;
+;
 
-
-public class user extends AppCompatActivity {
-    ImageButton trendingBtm,userBtm,locationBtm,settingsBtm;
-    ListView userlistview;
-    TextView usernameText;
-    ProgressBar progressBarSubject;
+public class user
+        extends AppCompatActivity{
+    ImageButton trendingBtm, userBtm, locationBtm, settingsBtm;
     FloatingActionButton addReviewBtm;
+    private NewsAdapter adapter;
+    private static int LOADER_ID = 0;
+    SwipeRefreshLayout swipe;
+    ListView SubjectListView;
+    ProgressBar progressBarSubject;
     String ServerURL = "http://lincoln.sjfc.edu/~cdc03819/CSCI375/userpage.php";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
+        SubjectListView = (ListView) findViewById(R.id.listview1);
+
+        progressBarSubject = (ProgressBar) findViewById(R.id.progressBar);
+
+        new GetHttpResponse(user.this).execute();
+
 
         trendingBtm = (ImageButton) findViewById(R.id.imageBtmtrending);
         userBtm = (ImageButton) findViewById(R.id.imageBtmuser);
@@ -47,13 +58,6 @@ public class user extends AppCompatActivity {
         locationBtm.setOnClickListener(btlocation);
         settingsBtm.setOnClickListener(btSettings);
         addReviewBtm.setOnClickListener(btAdd);
-
-       userlistview = (ListView) findViewById(R.id.listview1);
-       usernameText = (TextView) findViewById(R.id.textView);
-
-       progressBarSubject = (ProgressBar) findViewById(R.id.progressBar);
-
-        new user.GetHttpResponse(user.this).execute();
     }
 
     private class GetHttpResponse extends AsyncTask<Void, Void, Void> {
@@ -62,7 +66,6 @@ public class user extends AppCompatActivity {
         String ResultHolder;
 
         List<Users> subjectsList;
-       // TextView<Users> textview;
 
         public GetHttpResponse(Context context) {
             this.context = context;
@@ -101,21 +104,15 @@ public class user extends AppCompatActivity {
 
                                 Users.userName = jsonObject.getString("userID");
 
-
                                 subjectsList.add(Users);
                             }
-                            //Users = new Users();
-                            //int i = 0;
-                            //jsonObject = jsonArray.getJSONObject(i);
-                            //Users.userName = jsonObject.getString("userName");
-                            //usernameText.setText((CharSequence) Users);
                         } catch (JSONException e) {
                             // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
                     }
                 } else {
-                    Toast.makeText(context, httpServiceObject.getErrorMessage(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(context, httpServiceObject.getErrorMessage(), Toast.LENGTH_SHORT).show();
                 }
             } catch (Exception e) {
                 // TODO Auto-generated catch block
@@ -130,47 +127,48 @@ public class user extends AppCompatActivity {
         {
             progressBarSubject.setVisibility(View.GONE);
 
-            userlistview.setVisibility(View.VISIBLE);
+            SubjectListView.setVisibility(View.VISIBLE);
 
             if (subjectsList != null) {
                 ListAdapterClass adapter = new ListAdapterClass(subjectsList, context);
 
-                userlistview.setAdapter(adapter);
+                SubjectListView.setAdapter(adapter);
             }
         }
     }
 
-    ImageButton.OnClickListener btTrending= new ImageButton.OnClickListener(){
+
+    ImageButton.OnClickListener btTrending = new ImageButton.OnClickListener() {
         @Override
-        public void onClick(View v){
+        public void onClick(View v) {
             startActivity(new Intent(user.this, newsfeed.MainActivity.class));
         }
 
     };
-    ImageButton.OnClickListener btUser= new ImageButton.OnClickListener(){
+    ImageButton.OnClickListener btUser = new ImageButton.OnClickListener() {
         @Override
-        public void onClick(View v){
+        public void onClick(View v) {
             startActivity(new Intent(user.this, user.class));
         }
 
     };
-    ImageButton.OnClickListener btlocation= new ImageButton.OnClickListener(){
+    ImageButton.OnClickListener btlocation = new ImageButton.OnClickListener() {
         @Override
-        public void onClick(View v){
+        public void onClick(View v) {
             startActivity(new Intent(user.this, MapsActivity.class));
         }
 
     };
-    ImageButton.OnClickListener btSettings= new ImageButton.OnClickListener(){
+    ImageButton.OnClickListener btSettings = new ImageButton.OnClickListener() {
         @Override
-        public void onClick(View v){
+        public void onClick(View v) {
             startActivity(new Intent(user.this, SettingsActivity.class));
         }
 
     };
-    FloatingActionButton.OnClickListener btAdd= new ImageButton.OnClickListener(){
+    FloatingActionButton.OnClickListener btAdd = new ImageButton.OnClickListener() {
         @Override
-        public void onClick(View v){
+        public void onClick(View v) {
             startActivity(new Intent(user.this, add.class));
         }
 

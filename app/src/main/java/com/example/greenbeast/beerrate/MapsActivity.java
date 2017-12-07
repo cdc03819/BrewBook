@@ -38,7 +38,7 @@ public class MapsActivity extends AppCompatActivity {
     ImageButton.OnClickListener btUser= new ImageButton.OnClickListener(){
         @Override
         public void onClick(View v){
-            startActivity(new Intent(MapsActivity.this, user.class));
+            startActivity(new Intent(MapsActivity.this, newsfeed.user.class));
         }
 
     };

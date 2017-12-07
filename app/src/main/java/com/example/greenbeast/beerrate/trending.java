@@ -8,7 +8,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -158,7 +157,7 @@ public class trending extends AppCompatActivity {
     ImageButton.OnClickListener btUser= new ImageButton.OnClickListener(){
         @Override
         public void onClick(View v){
-            startActivity(new Intent(trending.this, user.class));
+            startActivity(new Intent(trending.this, newsfeed.user.class));
         }
 
     };

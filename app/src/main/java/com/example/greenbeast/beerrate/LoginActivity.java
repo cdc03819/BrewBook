@@ -28,8 +28,8 @@ import java.net.URLEncoder;
 public class LoginActivity extends AppCompatActivity {
     Button signIn, register;
     EditText email, password;
-    String userName, userPassword;
-    String add_user_url, login_url, newurl;
+    String userName, userPassword, msg;
+    String add_user_url, login_url, newurl, response;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +51,6 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             saveinfo(v);
-
-
 
         }
 
@@ -83,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-            Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
 
         }
 
@@ -121,8 +119,11 @@ public class LoginActivity extends AppCompatActivity {
                             response += s;
                         }
                         if (response.endsWith("]")) {
-                            Intent signin = new Intent(LoginActivity.this, newsfeed.MainActivity.class);
-                            startActivity(signin);
+                            startActivity(new Intent(LoginActivity.this, newsfeed.MainActivity.class));
+                            msg = "Login Successful!";
+                        }
+                        else{
+                            msg = "Invalid username or password!";
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -140,7 +141,7 @@ public class LoginActivity extends AppCompatActivity {
                 Log.d("userPassword = ", userPassword);
                 Log.d("url = ", newurl);
                 Log.d("valid = ", response);
-               return "Login Successful!";
+               //return "Login Successful!";
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {

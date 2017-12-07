@@ -24,14 +24,6 @@
             android:hint="Enter Password"
             android:inputType="textPassword" />
 
-        <EditText
-            android:id="@+id/regLoc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Enter Location"
-            android:inputType="textPersonName" />
-
         <Button
             android:id="@+id/registerbtn"
             android:layout_width="match_parent"

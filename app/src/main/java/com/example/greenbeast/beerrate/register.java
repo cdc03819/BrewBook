@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -34,11 +35,9 @@ public class register extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
 
-
         register = (Button) findViewById(R.id.registerbtn);
         register.setOnClickListener(btRegister);
-        username = (EditText)findViewById(R.id.regUser);
-        location = (EditText)findViewById(R.id.regLoc);
+        username = (EditText) findViewById(R.id.regUser);
         password = (EditText) findViewById(R.id.regPass);
 
     }
@@ -47,75 +46,86 @@ public class register extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             saveinfo(v);
-            startActivity(new Intent(register.this, newsfeed.MainActivity.class));
+            String pass = password.getText().toString();
+            String user = username.getText().toString();
+            if (TextUtils.isEmpty(user)) {
+                username.setError("You must enter a valid username");
+                return;
+            } else if (TextUtils.isEmpty(pass)) {
+                password.setError("You must enter a valid password");
+                return;
+            } else {
+                startActivity(new Intent(register.this, newsfeed.MainActivity.class));
+                Toast.makeText(register.this, "User Registered!", Toast.LENGTH_SHORT).show();
+            }
+
         }
 
     };
 
-    public void saveinfo(View view) {
-        userName = username.getText().toString();
-        userPassword = password.getText().toString();
-        userLocation = location.getText().toString();
-        BackgroundTask backgroundTask = new BackgroundTask();
-        backgroundTask.execute(userName, userPassword, userLocation);
-    }
-
-    class BackgroundTask extends AsyncTask<String, Void, String> {
-
-        String add_user_url;
-
-        @Override
-        protected void onPreExecute() {
-            add_user_url = "http://lincoln.sjfc.edu/~cdc03819/CSCI375/adduser.php";
-
+        public void saveinfo(View view) {
+            userName = username.getText().toString();
+            userPassword = password.getText().toString();
+            BackgroundTask backgroundTask = new BackgroundTask();
+            backgroundTask.execute(userName, userPassword);
         }
 
-        @Override
-        protected void onPostExecute(String result) {
-            Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
+        class BackgroundTask extends AsyncTask<String, Void, String> {
 
-        }
+            String add_user_url;
 
-        @Override
-        protected void onProgressUpdate(Void... values) {
-            super.onProgressUpdate(values);
-        }
+            @Override
+            protected void onPreExecute() {
+                add_user_url = "http://lincoln.sjfc.edu/~cdc03819/CSCI375/adduser.php";
 
-        @Override
-        protected String doInBackground(String... arg) {
-            String userName, userPassword;
-            userName = arg[0];
-            userPassword = arg[1];
-            try {
-                String data_String = URLEncoder.encode("userName", "UTF-8") + "=" + URLEncoder.encode(userName, "UTF-8") + "&" +
-                        URLEncoder.encode("userPassword", "UTF-8") + "=" + URLEncoder.encode(userPassword, "UTF-8")+ "&" +
-                        URLEncoder.encode("userLocation", "UTF-8") + "=" + URLEncoder.encode(userLocation, "UTF-8");
-                newurl = add_user_url +"?" + data_String;
-                URL url = new URL(newurl);
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-                httpURLConnection.setRequestMethod("POST");
-                httpURLConnection.setDoOutput(true);
-                OutputStream outputStream = httpURLConnection.getOutputStream();
-
-                outputStream.close();
-                InputStream inputStream = httpURLConnection.getInputStream();
-                inputStream.close();
-                httpURLConnection.disconnect();
-
-                Log.d("userName = ", userName);
-                Log.d("userPassword = ", userPassword);
-                Log.d("userLocation = ", userLocation);
-                Log.d("url = ", newurl);
-                return "User Registered!";
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
             }
-            return null;
+
+            @Override
+            protected void onPostExecute(String result) {
+                Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
+
+            }
+
+            @Override
+            protected void onProgressUpdate(Void... values) {
+                super.onProgressUpdate(values);
+            }
+
+            @Override
+            protected String doInBackground(String... arg) {
+                String userName, userPassword;
+                userName = arg[0];
+                userPassword = arg[1];
+                try {
+                    String data_String = URLEncoder.encode("userName", "UTF-8") + "=" + URLEncoder.encode(userName, "UTF-8") + "&" +
+                            URLEncoder.encode("userPassword", "UTF-8") + "=" + URLEncoder.encode(userPassword, "UTF-8");
+                    newurl = add_user_url + "?" + data_String;
+                    URL url = new URL(newurl);
+                    HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                    httpURLConnection.setRequestMethod("POST");
+                    httpURLConnection.setDoOutput(true);
+                    OutputStream outputStream = httpURLConnection.getOutputStream();
+
+                    outputStream.close();
+                    InputStream inputStream = httpURLConnection.getInputStream();
+                    inputStream.close();
+                    httpURLConnection.disconnect();
+
+                    Log.d("userName = ", userName);
+                    Log.d("userPassword = ", userPassword);
+                    Log.d("url = ", newurl);
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
         }
     }
-}
+
+
 
 
 
