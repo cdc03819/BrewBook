@@ -6,18 +6,18 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/userName"
+        style="@style/author"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="This is going to be a long headline, I'm sure."
-        style="@style/title"/>
+        tools:text="Username" />
 
     <TextView
-        android:id="@+id/author"
-        tools:text="Max Mustermann"
+        android:id="@+id/postInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/author" />
+        tools:text="PostINFO."
+        style="@style/title"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,20 +25,43 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/date"
-            tools:text="Sep 22, 2016"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            style="@style/date"/>
+    android:id="@+id/beerName"
+    tools:text="beername"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    style="@style/date"/>
 
-        <TextView
-            android:id="@+id/section"
-            tools:text="Development"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            style="@style/section"/>
-    </LinearLayout>
+    <TextView
+        android:id="@+id/postRating"
+        tools:text="rating"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        style="@style/section"/>
+</LinearLayout>
+
+
+<LinearLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="horizontal">
+
+<TextView
+    android:id="@+id/postDate"
+    tools:text="Sep 22, 2016"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    style="@style/date"/>
+
+<TextView
+    android:id="@+id/userLocation"
+    tools:text="location"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    style="@style/section"/>
+</LinearLayout>
 
 </LinearLayout>

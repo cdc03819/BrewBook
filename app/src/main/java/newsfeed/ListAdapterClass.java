@@ -54,7 +54,12 @@ public class ListAdapterClass extends BaseAdapter {
 
             convertView = layoutInfiater.inflate(R.layout.layout_items, null);
 
-            viewItem.TextViewSubjectName = (TextView)convertView.findViewById(R.id.textView1);
+            viewItem.TextViewUserName = (TextView)convertView.findViewById(R.id.userName);
+            viewItem.TextViewBeerName = (TextView)convertView.findViewById(R.id.beerName);
+           viewItem.TextViewPostDate = (TextView)convertView.findViewById(R.id.postDate);
+           viewItem.TextViewPostInfo = (TextView)convertView.findViewById(R.id.postInfo);
+            viewItem.TextViewPostRating = (TextView)convertView.findViewById(R.id.postRating);
+            viewItem.TextViewUserLocation = (TextView)convertView.findViewById(R.id.userLocation);
 
             convertView.setTag(viewItem);
         }
@@ -63,7 +68,12 @@ public class ListAdapterClass extends BaseAdapter {
             viewItem = (ViewItem) convertView.getTag();
         }
 
-        viewItem.TextViewSubjectName.setText(valueList.get(position).userName);
+        viewItem.TextViewUserName.setText(valueList.get(position).userName);
+        viewItem.TextViewBeerName.setText(valueList.get(position).beerName);
+        viewItem.TextViewPostDate.setText(valueList.get(position).postDate);
+        viewItem.TextViewPostInfo.setText(valueList.get(position).postInfo);
+        viewItem.TextViewPostRating.setText(valueList.get(position).postRating);
+        viewItem.TextViewUserLocation.setText(valueList.get(position).userLocation);
 
         return convertView;
     }
@@ -71,6 +81,13 @@ public class ListAdapterClass extends BaseAdapter {
 
 class ViewItem
 {
-    TextView TextViewSubjectName;
+    TextView TextViewUserName;
+    TextView TextViewBeerName;
+    TextView TextViewPostDate;
+    TextView TextViewPostInfo;
+    TextView TextViewPostRating;
+    TextView TextViewUserLocation;
+
+
 
 }

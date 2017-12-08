@@ -6,6 +6,14 @@ package newsfeed;
 
 public class Users {
 
-    public String userName ;
+    public String userName;
+    public static String userID;
+    public String beerName;
+    public String postDate;
+    public String postInfo;
+    public String postRating;
+    public String userLocation;
+
+
 
 }

@@ -55,7 +55,7 @@ public class register extends AppCompatActivity {
                 password.setError("You must enter a valid password");
                 return;
             } else {
-                startActivity(new Intent(register.this, newsfeed.MainActivity.class));
+                startActivity(new Intent(register.this, LoginActivity.class));
                 Toast.makeText(register.this, "User Registered!", Toast.LENGTH_SHORT).show();
             }
 

@@ -30,6 +30,9 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
+import newsfeed.MapsActivity;
+import newsfeed.add;
+
 
 public class trending extends AppCompatActivity {
         ImageButton trendingBtm,userBtm,locationBtm,settingsBtm;

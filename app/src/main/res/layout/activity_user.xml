@@ -90,10 +90,12 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/addReview"
         android:layout_alignParentStart="true"
-        android:text="@USERNAME"
+        android:layout_alignParentTop="true"
+        android:text="YOUR POSTS"
         android:textAlignment="viewStart"
-        android:textSize="18sp" />
+        android:textColor="@color/colorAccent"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 </RelativeLayout>
 

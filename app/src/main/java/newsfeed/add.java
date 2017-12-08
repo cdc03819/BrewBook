@@ -1,4 +1,4 @@
-package com.example.greenbeast.beerrate;
+package newsfeed;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -14,6 +14,9 @@ import android.widget.ImageButton;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
+import com.example.greenbeast.beerrate.R;
+import com.example.greenbeast.beerrate.SettingsActivity;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -25,10 +28,17 @@ import java.net.URLEncoder;
 public class add extends AppCompatActivity {
     ImageButton trendingBtm, userBtm, locationBtm, settingsBtm;
     EditText beerid, review;
-    String beerName, postinfo, postrating, newurl;
+    String beerName;
+    String useridstring;
+    String userid;
+    String postinfo;
+    String postrating;
+    String newurl;
+    EditText location;
     RatingBar stars;
     Toolbar toolbar;
     FloatingActionButton fab;
+    String userlocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +53,8 @@ public class add extends AppCompatActivity {
             public void onClick(View view) {
                 saveinfo(view);
                 Snackbar.make(view, "Review Added!", Snackbar.LENGTH_LONG).show();
+                startActivity(new Intent(add.this, newsfeed.MainActivity.class));
+
 
             }
         });
@@ -57,6 +69,7 @@ public class add extends AppCompatActivity {
         settingsBtm.setOnClickListener(btSettings);
         beerid = (EditText)findViewById(R.id.reviewTitle);
         review = (EditText)findViewById(R.id.reviewContents);
+        location = (EditText)findViewById(R.id.editLocation);
         stars = (RatingBar)findViewById(R.id.ratingBar);
 
     }
@@ -91,11 +104,18 @@ public class add extends AppCompatActivity {
     };
 
     public void saveinfo(View view) {
-        beerName = beerid.getText().toString();
+
+        userid = Users.userID;
+        useridstring = String.valueOf(userid);
+        beerName = "Beer Name: " + beerid.getText().toString();
         postinfo = review.getText().toString();
-        postrating = String.valueOf(stars.getNumStars());
+        userlocation = location.getText().toString();
+        postrating = "Rating: " + String.valueOf(stars.getRating());
         BackgroundTask backgroundTask = new BackgroundTask();
-        backgroundTask.execute(beerName, postinfo, postrating);
+        backgroundTask.execute(beerName, postinfo, postrating, userlocation, useridstring);
+
+
+
     }
 
     class BackgroundTask extends AsyncTask<String, Void, String> {
@@ -120,15 +140,21 @@ public class add extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... arg) {
-            String beerName, postinfo, postrating;
+            String beerName, postinfo, postrating, userLocation, userid;
+
             beerName = arg[0];
             postinfo = arg[1];
             postrating = arg[2];
+            userLocation = arg[3];
+            userid = arg[4];
+
 
             try {
                 String data_String = URLEncoder.encode("beerName", "UTF-8") + "=" + URLEncoder.encode(beerName, "UTF-8") + "&" +
-                        URLEncoder.encode("postinfo", "UTF-8") + "=" + URLEncoder.encode(postinfo, "UTF-8") + "&" +
-                        URLEncoder.encode("postrating", "UTF-8") + "=" + URLEncoder.encode(postrating, "UTF-8");
+                        URLEncoder.encode("postInfo", "UTF-8") + "=" + URLEncoder.encode(postinfo, "UTF-8") + "&" +
+                        URLEncoder.encode("postrating", "UTF-8") + "=" + URLEncoder.encode(postrating, "UTF-8")+ "&" +
+                        URLEncoder.encode("userLocation", "UTF-8") + "=" + URLEncoder.encode(userLocation, "UTF-8")+ "&" +
+                        URLEncoder.encode("userID", "UTF-8") + "=" + URLEncoder.encode(userid, "UTF-8");
                 newurl = add_info_url +"?" + data_String;
                 URL url = new URL(newurl);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
@@ -143,7 +169,9 @@ public class add extends AppCompatActivity {
 
                 Log.d("beerName = ", beerName);
                 Log.d("postinfo = ", postinfo);
+                Log.d("userLocation = ", userLocation);
                 Log.d("postrating = ", postrating);
+                Log.d("userID = ", userid);
                 Log.d("url = ", newurl);
                 return "Data has been inserted successfuly";
             } catch (MalformedURLException e) {

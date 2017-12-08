@@ -12,10 +12,8 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
-import com.example.greenbeast.beerrate.MapsActivity;
 import com.example.greenbeast.beerrate.R;
 import com.example.greenbeast.beerrate.SettingsActivity;
-import com.example.greenbeast.beerrate.add;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,12 +28,14 @@ public class user
         extends AppCompatActivity{
     ImageButton trendingBtm, userBtm, locationBtm, settingsBtm;
     FloatingActionButton addReviewBtm;
+    String newurl;
     private NewsAdapter adapter;
     private static int LOADER_ID = 0;
     SwipeRefreshLayout swipe;
     ListView SubjectListView;
     ProgressBar progressBarSubject;
-    String ServerURL = "http://lincoln.sjfc.edu/~cdc03819/CSCI375/userpage.php";
+    String userid;
+    String ServerURL = "http://lincoln.sjfc.edu/~cdc03819/CSCI375/userpage.php?userID="+ Users.userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +58,10 @@ public class user
         locationBtm.setOnClickListener(btlocation);
         settingsBtm.setOnClickListener(btSettings);
         addReviewBtm.setOnClickListener(btAdd);
+        userid = Users.userID;
+
+
+
     }
 
     private class GetHttpResponse extends AsyncTask<Void, Void, Void> {
@@ -102,7 +106,14 @@ public class user
 
                                 jsonObject = jsonArray.getJSONObject(i);
 
-                                Users.userName = jsonObject.getString("userID");
+                                Users.userName = jsonObject.getString("userName");
+                                Users.postDate = jsonObject.getString("postDate");
+                                Users.beerName = jsonObject.getString("beerName");
+                                Users.postInfo = jsonObject.getString("postInfo");
+                                Users.userLocation = jsonObject.getString("userLocation");
+                                Users.postRating = jsonObject.getString("postRating");
+                                //Users.userID = jsonObject.getString("userID");
+
 
                                 subjectsList.add(Users);
                             }
@@ -136,6 +147,7 @@ public class user
             }
         }
     }
+
 
 
     ImageButton.OnClickListener btTrending = new ImageButton.OnClickListener() {

@@ -1,16 +1,21 @@
-package com.example.greenbeast.beerrate;
+package newsfeed;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Toast;
+import android.widget.ListView;
+import android.widget.ProgressBar;
+
+import com.example.greenbeast.beerrate.R;
+import com.example.greenbeast.beerrate.SettingsActivity;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -31,52 +36,53 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
-import newsfeed.HttpServicesClass;
-import newsfeed.Users;
-
-public class LoginActivity extends AppCompatActivity {
-    Button signIn, register;
-    EditText email, password;
-    String userName, userPassword, msg, splitres;
-    String[] parts;
-    String add_user_url, login_url, newurl, response;
+public class MapsActivity extends AppCompatActivity {
+    Button go;
+    EditText location;
+    ListView SubjectListView;
+    String userlocation, add_info_url, location_url, newurl;
+    ProgressBar progressBarSubject;
+    private ImageButton trendingBtm, userBtm, locationBtm, settingsBtm, addReviewBtm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_maps);
 
 
-        signIn = (Button) findViewById(R.id.email_sign_in_button);
-        register = (Button) findViewById(R.id.email_register_button3);
-        signIn.setOnClickListener(btSignIn);
-        register.setOnClickListener(btRegister);
-        email = (EditText) findViewById(R.id.email);
-        password = (EditText) findViewById(R.id.password);
+        go = (Button) findViewById(R.id.button2);
+        go.setOnClickListener(btGo);
+        location = (EditText) findViewById(R.id.editLocation);
+        progressBarSubject = (ProgressBar) findViewById(R.id.progressBar);
+        SubjectListView = (ListView) findViewById(R.id.listview1);
+        trendingBtm = (ImageButton) findViewById(R.id.imageBtmtrending);
+        userBtm = (ImageButton) findViewById(R.id.imageBtmuser);
+        locationBtm = (ImageButton) findViewById(R.id.imageBtmlocation);
+        settingsBtm = (ImageButton) findViewById(R.id.imageBtmSettings);
+        addReviewBtm = (FloatingActionButton) findViewById(R.id.addReview);
+        trendingBtm.setOnClickListener(btTrending);
+        userBtm.setOnClickListener(btUser);
+        locationBtm.setOnClickListener(btlocation);
+        settingsBtm.setOnClickListener(btSettings);
+        addReviewBtm.setOnClickListener(btAdd);
+
 
     }
-
-    ImageButton.OnClickListener btSignIn = new ImageButton.OnClickListener() {
+    Button.OnClickListener btGo = new ImageButton.OnClickListener() {
         @Override
         public void onClick(View v) {
+           // startActivity(new Intent(newsfeed.MainActivity.this, SettingsActivity.class));
             saveinfo(v);
+            new GetHttpResponse(MapsActivity.this).execute();
 
-        }
-
-    };
-    ImageButton.OnClickListener btRegister = new ImageButton.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            startActivity(new Intent(LoginActivity.this, register.class));
         }
 
     };
 
     public void saveinfo(View view) {
-        userName = email.getText().toString();
-        userPassword = password.getText().toString();
+        userlocation = location.getText().toString();
         BackgroundTask backgroundTask = new BackgroundTask();
-        backgroundTask.execute(userName, userPassword);
+        backgroundTask.execute(userlocation);
     }
 
     class BackgroundTask extends AsyncTask<String, Void, String> {
@@ -85,12 +91,12 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {
-            login_url = "http://lincoln.sjfc.edu/~cdc03819/CSCI375/login.php";
+            location_url = "http://lincoln.sjfc.edu/~cdc03819/CSCI375/locationpage.php";
         }
 
         @Override
         protected void onPostExecute(String result) {
-            Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
 
         }
 
@@ -101,13 +107,11 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... arg) {
-            String userName, userPassword;
-            userName = arg[0];
-            userPassword = arg[1];
+            //String userLocation;
+            userlocation = arg[0];
             try {
-                String data_String = URLEncoder.encode("userName", "UTF-8") + "=" + URLEncoder.encode(userName, "UTF-8") + "&" +
-                        URLEncoder.encode("userPassword", "UTF-8") + "=" + URLEncoder.encode(userPassword, "UTF-8");
-                newurl = login_url + "?" + data_String;
+                String data_String = URLEncoder.encode("userLocation", "UTF-8") + "=" + URLEncoder.encode(userlocation, "UTF-8");
+                newurl = location_url +"?" + data_String;
                 URL url = new URL(newurl);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
@@ -127,25 +131,18 @@ public class LoginActivity extends AppCompatActivity {
                     while ((s = buffer.readLine()) != null) {
                         response += s;
                     }
-                    //Log.d("userID = ", String.valueOf(Users.userID));
-                    if (response.endsWith("]")) {
-                        splitres = response;
-                        parts = splitres.split(":");
-                        //Users.userID = parts[1];
-                        String[] newparts = parts[1].split(",");
-                        newparts[0] = newparts[0].substring(1);
-                        newparts[0] = newparts[0].replace(newparts[0].substring(newparts[0].length()-1),"");
-                        Users.userID = newparts[0];
-
-                        startActivity(new Intent(LoginActivity.this, newsfeed.MainActivity.class));
-                        msg = "Login Successful!";
-                    } else {
-                        msg = "Invalid username or password!";
-                    }
+                    //if (response.endsWith("]")) {
+                       // startActivity(new Intent(MapsActivity.this, newsfeed.MainActivity.class));
+                       // msg = "Login Successful!";
+                   // }
+                   // else{
+                        //msg = "Invalid username or password!";
+                   // }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
                 //}
+
 
 
                 outputStream.close();
@@ -153,8 +150,7 @@ public class LoginActivity extends AppCompatActivity {
                 inputStream.close();
                 httpURLConnection.disconnect();
 
-                Log.d("userName = ", userName);
-                Log.d("userPassword = ", userPassword);
+                Log.d("location = ", userlocation);
                 Log.d("url = ", newurl);
                 Log.d("valid = ", response);
                 //return "Login Successful!";
@@ -166,7 +162,6 @@ public class LoginActivity extends AppCompatActivity {
             return null;
         }
     }
-
     private class GetHttpResponse extends AsyncTask<Void, Void, Void> {
         public Context context;
 
@@ -185,6 +180,7 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... arg0) {
+            Log.d("url = ", newurl);
             HttpServicesClass httpServiceObject = new HttpServicesClass(newurl);
             try {
                 httpServiceObject.ExecutePostRequest();
@@ -209,10 +205,14 @@ public class LoginActivity extends AppCompatActivity {
 
                                 jsonObject = jsonArray.getJSONObject(i);
 
-                                //Users.userID = jsonObject.getInt("userID");
-                                //Users.userID = response.charAt(11);
-                                Log.d("userID = ", String.valueOf(Users.userID));
+                                Users.userName = jsonObject.getString("userName");
+                                Users.postDate = jsonObject.getString("postDate");
+                                Users.beerName = jsonObject.getString("beerName");
+                                Users.postInfo = jsonObject.getString("postInfo");
+                                Users.userLocation = jsonObject.getString("userLocation");
+                                Users.postRating = jsonObject.getString("postRating");
 
+                                subjectsList.add(Users);
                             }
                         } catch (JSONException e) {
                             // TODO Auto-generated catch block
@@ -229,8 +229,58 @@ public class LoginActivity extends AppCompatActivity {
             return null;
         }
 
+        @Override
+        protected void onPostExecute(Void result)
 
+        {
+            progressBarSubject.setVisibility(View.GONE);
+
+            SubjectListView.setVisibility(View.VISIBLE);
+
+            if (subjectsList != null) {
+                ListAdapterClass adapter = new ListAdapterClass(subjectsList, context);
+
+                SubjectListView.setAdapter(adapter);
+            }
+        }
     }
+    ImageButton.OnClickListener btTrending = new ImageButton.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            startActivity(new Intent(MapsActivity.this, newsfeed.MainActivity.class));
+        }
+
+    };
+    ImageButton.OnClickListener btUser = new ImageButton.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            startActivity(new Intent(MapsActivity.this, newsfeed.user.class));
+        }
+
+    };
+    ImageButton.OnClickListener btlocation = new ImageButton.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            startActivity(new Intent(MapsActivity.this, MapsActivity.class));
+        }
+
+    };
+    ImageButton.OnClickListener btSettings = new ImageButton.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            startActivity(new Intent(MapsActivity.this, SettingsActivity.class));
+        }
+
+    };
+    FloatingActionButton.OnClickListener btAdd = new ImageButton.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            startActivity(new Intent(MapsActivity.this, add.class));
+        }
+
+    };
+
+
 }
 
 

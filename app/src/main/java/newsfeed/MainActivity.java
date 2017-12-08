@@ -12,10 +12,9 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
-import com.example.greenbeast.beerrate.MapsActivity;
 import com.example.greenbeast.beerrate.R;
 import com.example.greenbeast.beerrate.SettingsActivity;
-import com.example.greenbeast.beerrate.add;
+import com.example.greenbeast.beerrate.info.androidhive.listviewfeed.data.FeedItem;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,6 +30,7 @@ public class MainActivity
     ImageButton trendingBtm, userBtm, locationBtm, settingsBtm;
     FloatingActionButton addReviewBtm;
     private NewsAdapter adapter;
+    private List<FeedItem> feeditems;
     private static int LOADER_ID = 0;
     SwipeRefreshLayout swipe;
     ListView SubjectListView;
@@ -42,7 +42,7 @@ public class MainActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main1);
         SubjectListView = (ListView) findViewById(R.id.listview1);
-
+        //this.feeditems = new ArrayList();
         progressBarSubject = (ProgressBar) findViewById(R.id.progressBar);
 
         new GetHttpResponse(MainActivity.this).execute();
@@ -102,7 +102,13 @@ public class MainActivity
 
                                 jsonObject = jsonArray.getJSONObject(i);
 
-                                Users.userName = jsonObject.getString("postInfo");
+                                Users.userName = jsonObject.getString("userName");
+                                Users.postDate = jsonObject.getString("postDate");
+                                Users.beerName = jsonObject.getString("beerName");
+                                Users.postInfo = jsonObject.getString("postInfo");
+                                Users.userLocation = jsonObject.getString("userLocation");
+                                Users.postRating = jsonObject.getString("postRating");
+
 
                                 subjectsList.add(Users);
                             }

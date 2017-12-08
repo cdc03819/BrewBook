@@ -5,68 +5,80 @@ package newsfeed;
  */
 public class News {
 
-    String title;
-    String author;
-    String url;
-    String date;
-    String section;
+    String userName;
+    String beerName;
+    String postDate;
+    String postInfo;
+    String postRating;
+    String userLocation;
 
-    public News(String title, String author, String url, String date, String section) {
-        this.title = title;
-        this.author = author;
-        this.url = url;
-        this.date = date;
-        this.section = section;
+    public News(String userName, String beerName, String postDate, String postInfo, String postRating, String userLocation) {
+        this.userName = userName;
+        this.beerName = beerName;
+        this.postDate = postDate;
+        this.postInfo = postInfo;
+        this.postRating = postRating;
+        this.userLocation = userLocation;
     }
 
-    public String getTitle() {
-        return title;
+    public String getuserName() {
+        return userName;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public String getAuthor() {
-        return author;
+    public String getBeerName() {
+        return beerName;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setBeerName(String beerName) {
+        this.beerName = beerName;
     }
 
-    public String getUrl() {
-        return url;
+    public String getPostDate() {
+        return postDate;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setPostDate(String postDate) {
+        this.postDate = postDate;
     }
 
-    public String getDate() {
-        return date;
+    public String getPostInfo() {
+        return postInfo;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setPostInfo(String postInfo) {
+        this.postInfo = postInfo;
     }
 
-    public String getSection() {
-        return section;
+    public String getPostRating() {
+        return postRating;
     }
 
-    public void setSection(String section) {
-        this.section = section;
+    public void setPostRating(String postRating) {
+        this.postRating = postRating;
     }
+
+    public String getUserLocation() {
+        return userLocation;
+    }
+
+    public void setUserLocation(String userLocation) {
+        this.userLocation = userLocation;
+    }
+
 
     @Override
     public String toString() {
         return "News{" +
-                "title='" + title + '\'' +
-                ", author='" + author + '\'' +
-                ", url='" + url + '\'' +
-                ", date='" + date + '\'' +
-                ", section='" + section + '\'' +
+                "userName='" + userName + '\'' +
+                ", beerName='" + beerName + '\'' +
+                ", postDate='" + postDate + '\'' +
+                ", postInfo='" + postInfo + '\'' +
+                ", postRating='" + postRating + '\'' +
+                ", userLocation='" + userLocation + '\'' +
                 '}';
     }
 }

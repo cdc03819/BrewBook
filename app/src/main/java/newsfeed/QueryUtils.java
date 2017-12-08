@@ -30,13 +30,10 @@ public class QueryUtils {
     static String createStringUrl() {
         Uri.Builder builder = new Uri.Builder();
         builder.scheme("http")
-                .encodedAuthority("content.guardianapis.com")
-                .appendPath("search")
-                .appendQueryParameter("order-by", "newest")
-                .appendQueryParameter("show-references", "author")
-                .appendQueryParameter("show-tags", "contributor")
-                .appendQueryParameter("q", "Android")
-                .appendQueryParameter("api-key", "test");
+                .encodedAuthority("lincoln.sjfc.edu")
+                .appendPath("~cdc03819")
+                .appendPath("CSCI375")
+                .appendPath("Users.php");
         String url = builder.build().toString();
         return url;
     }
@@ -122,23 +119,26 @@ public class QueryUtils {
 
             for (int i = 0; i < resultsArray.length(); i++) {
                 JSONObject oneResult = resultsArray.getJSONObject(i);
-                String webTitle = oneResult.getString("webTitle");
-                String url = oneResult.getString("webUrl");
-                String date = oneResult.getString("webPublicationDate");
-                date = formatDate(date);
-                String section = oneResult.getString("sectionName");
-                JSONArray tagsArray = oneResult.getJSONArray("tags");
-                String author = "";
+                String userName = oneResult.getString("userName");
+                String beerName = oneResult.getString("beerName");
+                String postDate = oneResult.getString("postDate");
+                String postInfo = oneResult.getString("postInfo");
+                String postRating = oneResult.getString("postRating");
+                String userLocation = oneResult.getString("userLocation");
+                //date = formatDate(date);
+                //String section = oneResult.getString("sectionName");
+               // JSONArray tagsArray = oneResult.getJSONArray("tags");
+               // String author = "";
 
-                if (tagsArray.length() == 0) {
-                    author = null;
-                } else {
-                    for (int j = 0; j < tagsArray.length(); j++) {
-                        JSONObject firstObject = tagsArray.getJSONObject(j);
-                        author += firstObject.getString("webTitle") + ". ";
-                    }
-                }
-                listOfNews.add(new News(webTitle, author, url, date, section));
+               // if (tagsArray.length() == 0) {
+               //     author = null;
+               // } else {
+               //     for (int j = 0; j < tagsArray.length(); j++) {
+                       // JSONObject firstObject = tagsArray.getJSONObject(j);
+                        //author += firstObject.getString("webTitle") + ". ";
+                   // }
+                //}
+                listOfNews.add(new News(userName, beerName, postDate, postInfo, postRating, userLocation));
             }
         } catch (JSONException e) {
             Log.e("Queryutils", "Error parsing JSON response", e);

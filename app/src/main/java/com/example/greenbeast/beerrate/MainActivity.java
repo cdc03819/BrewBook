@@ -8,6 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
 
+import newsfeed.MapsActivity;
+import newsfeed.add;
+
 
 public class MainActivity extends AppCompatActivity {
    ImageButton trendingBtm,userBtm,locationBtm,settingsBtm;
@@ -43,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         locationBtm.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent location = new Intent(MainActivity.this, com.example.greenbeast.beerrate.MapsActivity.class);
+                Intent location = new Intent(MainActivity.this, MapsActivity.class);
                 startActivity(location);
             }
         });

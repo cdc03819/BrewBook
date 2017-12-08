@@ -26,16 +26,20 @@ public class NewsAdapter extends ArrayAdapter<News> {
             convertView
                     = LayoutInflater.from(getContext()).inflate(R.layout.list_item, parent, false);
         }
-        TextView title = (TextView) convertView.findViewById(R.id.title);
-        TextView author = (TextView) convertView.findViewById(R.id.author);
-        TextView date = (TextView) convertView.findViewById(R.id.date);
-        TextView section = (TextView) convertView.findViewById(R.id.section);
+        TextView userName = (TextView) convertView.findViewById(R.id.userName);
+        TextView beerName = (TextView) convertView.findViewById(R.id.beerName);
+        TextView postDate = (TextView) convertView.findViewById(R.id.postDate);
+        TextView postInfo = (TextView) convertView.findViewById(R.id.postInfo);
+        TextView postRating = (TextView) convertView.findViewById(R.id.postRating);
+        TextView userLocation = (TextView) convertView.findViewById(R.id.userLocation);
 
         News currentNews = getItem(position);
-        title.setText(currentNews.getTitle());
-        author.setText(currentNews.getAuthor());
-        date.setText(currentNews.getDate());
-        section.setText(currentNews.getSection());
+        userName.setText(currentNews.getuserName());
+        beerName.setText(currentNews.getBeerName());
+        postDate.setText(currentNews.getPostDate());
+        postInfo.setText(currentNews.getPostInfo());
+        postRating.setText(currentNews.getPostRating());
+        userLocation.setText(currentNews.getUserLocation());
 
         return convertView;
     }
