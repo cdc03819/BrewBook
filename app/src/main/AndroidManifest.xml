@@ -22,7 +22,7 @@
     <application
         android:allowBackup="true"
         android:fullBackupContent="@xml/backup_descriptor"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="BrewBook"
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
