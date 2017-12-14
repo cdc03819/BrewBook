@@ -45,7 +45,6 @@ public class register extends AppCompatActivity {
     ImageButton.OnClickListener btRegister = new ImageButton.OnClickListener() {
         @Override
         public void onClick(View v) {
-            saveinfo(v);
             String pass = password.getText().toString();
             String user = username.getText().toString();
             if (TextUtils.isEmpty(user)) {
@@ -55,6 +54,7 @@ public class register extends AppCompatActivity {
                 password.setError("You must enter a valid password");
                 return;
             } else {
+                saveinfo(v);
                 startActivity(new Intent(register.this, LoginActivity.class));
                 Toast.makeText(register.this, "User Registered!", Toast.LENGTH_SHORT).show();
             }
